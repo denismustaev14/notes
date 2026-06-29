@@ -48,26 +48,6 @@ h1 {
     overflow-y: auto;
 }
 
-.note-item {
-    padding: 12px 18px;
-    cursor: pointer;
-    border-bottom: 1px solid #eef2f6;
-    font-size: 15px;
-    color: #1e293b;
-    transition: all 0.15s;
-    font-weight: 500;
-}
-
-.note-item:hover {
-    background: #e2e8f0;
-}
-
-.note-item.active {
-    background: #dbeafe;
-    color: #1e4b8a;
-    border-left: 4px solid #2563eb;
-}
-
 /* ===== Правая колонка ===== */
 .content {
     flex: 1;
@@ -79,14 +59,51 @@ h1 {
 }
 
 .note-text {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #0f172a;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-#noteDisplay {
-    margin: 0;
+/* ===== Панель инструментов ===== */
+.note-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
 }
+
+/* ===== Кнопка удаления ===== */
+.delete-note-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.delete-note-btn:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.delete-note-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.delete-note-btn.hidden {
+    display: none;
+}
+
+/* ===== Кнопка добавления ===== */
 .add-note-btn {
     display: inline-block;
     padding: 10px 20px;
@@ -112,6 +129,8 @@ h1 {
     transform: translateY(0);
     box-shadow: none;
 }
+
+/* ===== Редактор ===== */
 .note-editor {
     width: 100%;
     height: 100%;
@@ -127,6 +146,7 @@ h1 {
     background: #fafbfc;
     color: #0f172a;
     line-height: 1.6;
+    flex: 1;
 }
 
 .note-editor:focus {
@@ -139,31 +159,12 @@ h1 {
     color: #94a3b8;
     font-style: italic;
 }
-.save-btn {
-    display: inline-block;
-    padding: 10px 24px;
-    background: #10b981;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 12px;
-    width: 100%;
+
+.note-editor.hidden {
+    display: none;
 }
 
-.save-btn:hover {
-    background: #059669;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-}
-
-.save-btn:active {
-    transform: translateY(0);
-    box-shadow: none;
-}
+/* ===== Кнопки заметок (динамические) ===== */
 .note-item {
     display: block;
     width: 100%;
@@ -190,28 +191,42 @@ h1 {
     border-left: 4px solid #2563eb;
 }
 
-/* Убираем стандартные стили кнопки */
 .note-item:focus {
     outline: none;
 }
 
-/* Если нужно убрать стандартный фон при нажатии */
 .note-item:active {
     transform: scale(0.99);
 }
-.hidden{
-    display: none;
-}
-.new-button{
+
+.new-button {
     display: inline-block;
     padding: 10px 20px;
     background: white;
     color: black;
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     width: 100%;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.new-button:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.new-button:active {
+    transform: scale(0.98);
+}
+
+/* ===== Скрытый класс ===== */
+.hidden {
+    display: none;
 }
